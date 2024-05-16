@@ -17,19 +17,91 @@ df = pd.DataFrame(sample_data)
 
 # Initialize session state
 if 'view' not in st.session_state:
-    st.session_state.view = 'form'
+    st.session_state.view = 'home'
 
 # Streamlit app
-st.title('Salary Prediction App')
+st.title('Data Career Consulting')
 
 st.sidebar.header('Navigation')
 
-# Navigation buttons
-if st.sidebar.button('Dashboard'):
+# CSS for custom styling
+st.markdown(
+     """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    
+    body {
+        color: #ffffff;
+        background-color: #000000;
+    }
+    .anton-regular {
+        font-family: "Anton", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .stButton>button {
+        width: 100%;
+        background-color: #01011976;
+        color: #ffffff;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+    .stButton>button:hover {
+        background-color: #000000; 
+        color: #49c5b6; 
+    }
+    .stButton>button:active {
+        background-color: #49c5b6; 
+    }
+    .st-bk {
+        width: 100%;
+    }
+    h1 {
+            color: #49c5b6 !important;
+            font-weight: extra-bold;
+            text-align: center;
+            text-transform: uppercase;
+    }
+    h2 {
+            color: #ffff !important;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+    }
+    h3 {
+            color: #ffff !important;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.5em;
+    }
+    p {
+        text-align: center;
+        
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Navigation buttons in the sidebar
+if st.sidebar.button('🏠 Home'):
+    st.session_state.view = 'home'
+
+if st.sidebar.button('📊 Dashboard'):
     st.session_state.view = 'dashboard'
 
+if st.sidebar.button('💼 Project'):
+    st.session_state.view = 'project'
+    
+if st.sidebar.button('📞 Contact'):
+    st.session_state.view = 'contact'
+
+
 # Form for input details in an expandable section
-with st.sidebar.expander('Input your details'):
+with st.sidebar.expander('🔍 Simulation'):
     with st.form(key='salary_form'):
         pays = st.selectbox('Pays', ['United States', 'Germany', 'India', 'United Kingdom', 'Canada'])
         job_title = st.selectbox('Job Title', ['Data Scientist', 'Data Engineer', 'Machine Learning Engineer', 'Data Analyst', 'AI Engineer'])
@@ -75,7 +147,7 @@ if st.session_state.view == 'prediction':
 
 # Dashboard view
 if st.session_state.view == 'dashboard':
-    st.write('## Dashboard')
+    st.write('## ')
     
     # Example visualizations
     st.write('### Salary Distribution')
@@ -89,6 +161,17 @@ if st.session_state.view == 'dashboard':
     avg_salary_by_job = df.groupby('Job Title')['Salary'].mean().reset_index()
     st.bar_chart(avg_salary_by_job.set_index('Job Title'))
 
-# Display the sample data as a table
-st.write('Sample Data for Visualization:')
-st.dataframe(df)
+# Project view
+if st.session_state.view == 'project':
+    st.write('## Our Project')
+    st.write('This is our awesome project! 🚀')
+    
+# Contact view
+if st.session_state.view == 'contact':
+    st.write('## Contact Us')
+    st.write('Please contact Karolina, Lala, Luana, and Patrick for any questions or feedback. 📧')
+
+
+# # Display the sample data as a table
+# st.write('Sample Data for Visualization:')
+# st.dataframe(df)
