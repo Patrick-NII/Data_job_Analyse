@@ -5,124 +5,11 @@ import numpy as np
 import plotly.express as px 
 import requests
 from io import BytesIO
-
-
-# # Load HTML content from index.html file
-# with open("D:\\Protojam_1\\Frontend\\index.html", "r") as file:
-#     index_html = file.read()
-
-# # Load CSS content from styles.css file
-# with open("D:\\Protojam_1\\Frontend\\style.css", "r") as file:
-#     css = file.read()
-
-# # Display HTML content
-# st.markdown(index_html, unsafe_allow_html=True)
-
-# # Display CSS content
-# st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+import base64
 
 # Charger le DataFrame à partir du fichier CSV
 file_path = "D:\\Protojam_1\\Data\\tableau_nettoye.csv"
 df = pd.read_csv(file_path)
-
-
-# # Initialize session state
-# if 'view' not in st.session_state:
-#     st.session_state.view = 'home'
-
-# st.sidebar.header('Menu')
-
-# # Navigation buttons in the sidebar
-# if st.sidebar.button('Home'):
-#     st.session_state.view = 'home'
-
-# if st.sidebar.button('Dashboard'):
-#     st.session_state.view = 'dashboard'
-
-# if st.sidebar.button('Project'):
-#     st.session_state.view = 'project'
-
-# if st.sidebar.button('Contact'):
-#     st.session_state.view = 'contact'
-
-# # Form for input details in an expandable section
-# with st.sidebar.expander('🔍 Simulation'):
-#     with st.form(key='salary_form'):
-#         pays = st.selectbox('Pays', ['United States', 'Germany', 'India', 'United Kingdom', 'Canada'])
-#         job_title = st.selectbox('Job Title', ['Data Scientist', 'Data Engineer', 'Machine Learning Engineer', 'Data Analyst', 'AI Engineer'])
-#         experience_level = st.selectbox('Experience level', ['Entry-level', 'Mid-level', 'Senior-level', 'Executive-level'])
-#         work_setting = st.selectbox('Work setting', ['Remote', 'Hybrid', 'In-person'])
-#         company_size = st.selectbox('Company size', ['L', 'M', 'S'])
-#         year = st.selectbox('Year', [2023, 2022, 2021, 2020])
-        
-#         submit_button = st.form_submit_button(label='Submit')
-    
-#     if submit_button:
-#         st.session_state.view = 'prediction'
-#         st.session_state.pays = pays
-#         st.session_state.job_title = job_title
-#         st.session_state.experience_level = experience_level
-#         st.session_state.work_setting = work_setting
-#         st.session_state.company_size = company_size
-#         st.session_state.year = year
-
-# # Prediction view
-# if st.session_state.view == 'prediction':
-#     st.write('## Prediction Results')
-#     st.write('You selected:')
-#     st.write(f'company_location: {st.session_state.pays}')
-#     st.write(f'job_title: {st.session_state.job_title}')
-#     st.write(f'experience_level: {st.session_state.experience_level}')
-#     st.write(f'Work setting: {st.session_state.work_setting}')
-#     st.write(f'Company size: {st.session_state.company_size}')
-#     st.write(f'Year: {st.session_state.year}')
-    
-#     # Filter data based on user input
-#     filtered_data = df[(df['company_location'] == st.session_state.company_location) &
-#                        (df['job_title'] == st.session_state.job_title) &
-#                        (df['experience_level'] == st.session_state.experience_level) &
-#                        (df['work_setting'] == st.session_state.work_setting) &
-#                        (df['company_size'] == st.session_state.company_size) &
-#                        (df['work_year'] == st.session_state.work_year)]
-    
-#     if not filtered_data.empty:
-#         st.write('Filtered Data:', filtered_data)
-#     else:
-#         st.write('No data available for the selected criteria.')
-
-# # Home view
-# if st.session_state.view == 'home':
-#     st.write("❝ Data Career Consulting is a platform providing insights into data job salaries. \
-#             With our interactive dashboard, clients can explore salary data by country, \
-#             job title, and experience level, empowering them to make informed career decisions. ❞")
-
-# # Dashboard view
-# if st.session_state.view == 'dashboard':
-#     st.write('## Dashboard')
-    
-#     # Example visualizations
-#     st.write('### Salary Distribution')
-#     st.bar_chart(df['salary_in_usd'])
-    
-#     st.write('### Average Salary by Country')
-#     avg_salary_by_country = df.groupby('company_location')['salary_in_usd'].mean().reset_index()
-#     st.bar_chart(avg_salary_by_country.set_index('company_location'))
-
-#     st.write('### Average Salary by Job Title')
-#     avg_salary_by_job = df.groupby('job_title')['salary_in_usd'].mean().reset_index()
-#     st.bar_chart(avg_salary_by_job.set_index('job_title'))
-
-# # Project view
-# if st.session_state.view == 'project':
-#     st.write('## Our Project')
-#     st.write('This is our awesome project! 🚀')
-    
-# # Contact view
-# if st.session_state.view == 'contact':
-#     st.write('## Contact Us')
-#     st.write('Please contact Karolina, Lala, Luana, and Patrick for any questions or feedback. 📧')
-
-
 
 
 
@@ -130,10 +17,6 @@ df = pd.read_csv(file_path)
 logo_path = 'D:/Protojam_1/Frontend/images/logo_with_transparent_background_1.png'
 width = st.sidebar.image(logo_path, use_column_width=True, width=100)
 
-import base64
-
-# Chemin vers l'image d'arrière-plan
-# background_image_path = 'D:\\Protojam_1\\Frontend\\images\\1929.jpg'
 
 # Fonction pour encoder l'image en base64
 def get_base64_of_bin_file(bin_file):
@@ -164,10 +47,6 @@ st.markdown(hide_header_style, unsafe_allow_html=True)
 
 # Affichage de l'arrière-plan et du contenu de l'application
 st.markdown(background_css, unsafe_allow_html=True)
-
-
-
-
 
 
 # File paths
